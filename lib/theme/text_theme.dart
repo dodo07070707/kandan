@@ -2,24 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:kandan/theme/color_theme.dart';
 
 abstract class KDTextTheme {
-  static final SplashMain = TextStyle(
+  static final SplashMain1 = TextStyle(
     fontFamily: 'Pretendard',
-    fontSize: 64,
-    color: Colors.white,
-    letterSpacing: 2,
-    shadows: [
-      Shadow(
-        blurRadius: 10,
-        color: Colors.white.withOpacity(0.7),
-        offset: const Offset(0, 0),
-      ),
-    ],
+    fontSize: 54,
+    color: KdColors.NotBlack,
+    fontWeight: FontWeight.w800,
+    letterSpacing: 3,
+  );
+  static final SplashMain2 = TextStyle(
+    fontFamily: 'Pretendard',
+    fontSize: 32,
+    color: KdColors.NotBlack,
+    fontWeight: FontWeight.w600,
+    letterSpacing: 1,
+    height: 3,
   );
   static final SplashDesc = TextStyle(
     fontFamily: 'Pretendard',
     fontSize: 12,
-    color: Colors.white.withOpacity(0.3),
-    letterSpacing: 0,
+    color: KdColors.NotBlack,
+    fontWeight: FontWeight.w400,
   );
   static final StarthMain = TextStyle(
     fontFamily: 'Pretendard',

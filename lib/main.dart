@@ -66,7 +66,7 @@ class _MyAppState extends State<MyApp> {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const SplashScreen();
                   } else {
-                    return const MainScreen();
+                    return const SplashScreen();
                   }
                 },
               ),

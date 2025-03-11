@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 abstract class KdColors {
-  static const MAIN_THEME = Colors.black;
+  static const NotBlack = Color(0xFF121212);
+  static const NotWhite = Color(0xFFFAFAFA);
 }
 
 abstract class GradientDesign {

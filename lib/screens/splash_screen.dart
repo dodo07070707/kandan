@@ -20,17 +20,49 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: GradientDesign.BlackGradient,
+        decoration: BoxDecoration(color: KdColors.NotWhite),
         child: Column(
           children: [
-            SizedBox(height: screenHeight / 932 * 440),
-            Text(
-              'D-n',
-              style: KDTextTheme.SplashMain,
+            SizedBox(height: screenHeight / 932 * 390),
+            SizedBox(
+              height: screenHeight / 932 * 64,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '간',
+                    style: KDTextTheme.SplashMain1,
+                  ),
+                  SizedBox(width: screenWidth / 932 * 5),
+                  Text(
+                    '단한',
+                    style: KDTextTheme.SplashMain2,
+                  ),
+                ],
+              ),
             ),
-            SizedBox(height: screenHeight / 932 * 330),
+            SizedBox(
+              height: screenHeight / 932 * 64,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '단',
+                    style: KDTextTheme.SplashMain1,
+                  ),
+                  SizedBox(width: screenWidth / 932 * 5),
+                  Text(
+                    '어장',
+                    style: KDTextTheme.SplashMain2,
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: screenHeight / 932 * 320),
             Text(
-              'Copyright 2024. D-n All rights reserved.',
+              'Copyright 2025. Kandan All rights reserved.',
               style: KDTextTheme.SplashDesc,
             ),
           ],
