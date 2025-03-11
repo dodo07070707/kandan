@@ -31,6 +31,7 @@ class _AddScreenState extends State<AddScreen> {
         _inputList.add(input1);
         _inputList.add(input2);
       });
+      Get.back();
     } else {
       Get.snackbar(
         '알림',
