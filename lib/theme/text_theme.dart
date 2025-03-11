@@ -23,31 +23,33 @@ abstract class KDTextTheme {
     color: KdColors.NotBlack,
     fontWeight: FontWeight.w400,
   );
-  static final StarthMain = TextStyle(
-    fontFamily: 'Pretendard',
-    fontSize: 19,
-    color: Colors.white,
-    letterSpacing: -0.8,
-    shadows: [
-      Shadow(
-        blurRadius: 10,
-        color: Colors.white.withOpacity(0.7),
-        offset: const Offset(0, 0),
-      ),
-    ],
-  );
   static final MainMain = TextStyle(
     fontFamily: 'Pretendard',
-    fontSize: 64,
-    color: Colors.white,
-    letterSpacing: -0.8,
-    shadows: [
-      Shadow(
-        blurRadius: 10,
-        color: Colors.white.withOpacity(0.7),
-        offset: const Offset(0, 0),
-      ),
-    ],
+    fontSize: 50,
+    color: KdColors.NotBlack,
+    fontWeight: FontWeight.w700,
+    letterSpacing: 1,
+  );
+  static final Label = TextStyle(
+    fontFamily: 'Pretendard',
+    fontSize: 20,
+    color: KdColors.NotBlack,
+    fontWeight: FontWeight.w700,
+    letterSpacing: -0.25,
+  );
+  static final hintStyle = TextStyle(
+    fontFamily: 'Pretendard',
+    fontSize: 30,
+    color: KdColors.NotBlack,
+    fontWeight: FontWeight.w300,
+    letterSpacing: -0.25,
+  );
+  static final ButtonStyleBlack = TextStyle(
+    fontFamily: 'Pretendard',
+    fontSize: 16,
+    color: KdColors.NotWhite,
+    fontWeight: FontWeight.w400,
+    letterSpacing: -0.25,
   );
   static final MainSub = TextStyle(
     fontFamily: 'Pretendard',
