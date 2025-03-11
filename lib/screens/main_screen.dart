@@ -3,6 +3,7 @@ import 'package:kandan/theme/color_theme.dart';
 import 'package:kandan/theme/text_theme.dart';
 import 'package:get/get.dart';
 import 'add_screen.dart';
+import 'memory_screen_eng.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -39,7 +40,11 @@ class _MainScreenState extends State<MainScreen> {
               decoration: BoxDecoration(color: KdColors.NotBlack),
             ),
             SizedBox(height: screenHeight / 844 * 100),
-            Text('암기(ENG)', style: KDTextTheme.MainMain),
+            GestureDetector(
+                onTap: () {
+                  Get.to(() => MemoryScreenEng());
+                },
+                child: Text('암기(ENG)', style: KDTextTheme.MainMain)),
             SizedBox(height: screenHeight / 844 * 100),
             Container(
               height: screenHeight / 844 * 1,

@@ -51,51 +51,18 @@ abstract class KDTextTheme {
     fontWeight: FontWeight.w400,
     letterSpacing: -0.25,
   );
-  static final MainSub = TextStyle(
+  static final ButtonStyleWhite = TextStyle(
     fontFamily: 'Pretendard',
-    fontSize: 20,
-    color: Colors.white,
-    letterSpacing: -0.8,
-    shadows: [
-      Shadow(
-        blurRadius: 10,
-        color: Colors.white.withOpacity(0.7),
-        offset: const Offset(0, 0),
-      ),
-    ],
+    fontSize: 16,
+    color: KdColors.NotBlack,
+    fontWeight: FontWeight.w400,
+    letterSpacing: -0.25,
   );
-  static final SettingMenu = TextStyle(
+  static final MemorizeWord = TextStyle(
     fontFamily: 'Pretendard',
-    fontSize: 20,
-    color: Colors.white,
-    letterSpacing: -0.8,
-    shadows: [
-      Shadow(
-        blurRadius: 10,
-        color: Colors.white.withOpacity(0.7),
-        offset: const Offset(0, 0),
-      ),
-    ],
-  );
-  static final SettingButton = TextStyle(
-    fontFamily: 'Pretendard',
-    fontSize: 12,
-    color: Colors.white.withOpacity(0.5),
-    letterSpacing: -0.8,
-    height: 0.7,
-  );
-  static final SettingPhrase = TextStyle(
-    fontFamily: 'Pretendard',
-    fontSize: 12,
-    color: Colors.white.withOpacity(0.5),
-    letterSpacing: -0.8,
-    height: 1,
-  );
-  static final SettingListPhrase = TextStyle(
-    fontFamily: 'Pretendard',
-    fontSize: 12,
-    color: Colors.white.withOpacity(0.5),
-    letterSpacing: -0.8,
-    height: 0.7,
+    fontSize: 40,
+    color: KdColors.NotBlack,
+    fontWeight: FontWeight.w700,
+    letterSpacing: -0.25,
   );
 }

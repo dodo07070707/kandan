@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:kandan/theme/color_theme.dart';
 import 'package:kandan/theme/text_theme.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 class AddScreen extends StatefulWidget {
   const AddScreen({super.key});
@@ -22,7 +24,9 @@ class _AddScreenState extends State<AddScreen> {
     super.dispose();
   }
 
-  void _saveInputs() {
+  void _saveInputs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
     String input1 = _controller1.text.trim();
     String input2 = _controller2.text.trim();
 
@@ -31,7 +35,23 @@ class _AddScreenState extends State<AddScreen> {
         _inputList.add(input1);
         _inputList.add(input2);
       });
-      Get.back();
+
+      // 기존 저장된 리스트 불러오기
+      String? wordListString = prefs.getString('wordList');
+      List<List<String>> wordList = [];
+
+      if (wordListString != null) {
+        List<dynamic> jsonData = jsonDecode(wordListString);
+        wordList = jsonData.map((item) => List<String>.from(item)).toList();
+      }
+
+      // 새 데이터 추가
+      wordList.add([input1, input2]);
+
+      // SharedPreferences에 저장
+      await prefs.setString('wordList', jsonEncode(wordList));
+
+      Get.back(); // 화면 닫기
     } else {
       Get.snackbar(
         '알림',
@@ -67,12 +87,7 @@ class _AddScreenState extends State<AddScreen> {
                 ),
               ),
               SizedBox(height: screenHeight / 844 * 20),
-              Row(
-                children: [
-                  SizedBox(width: screenWidth / 844 * 10),
-                  Text('단어 추가', style: KDTextTheme.Label),
-                ],
-              ),
+              Text('단어 추가', style: KDTextTheme.Label),
               SizedBox(height: screenHeight / 844 * 10),
               Container(
                 height: screenHeight / 844 * 1,
