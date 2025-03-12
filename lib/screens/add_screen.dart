@@ -69,84 +69,91 @@ class _AddScreenState extends State<AddScreen> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(color: KdColors.NotWhite),
-        width: double.infinity,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: screenWidth / 390 * 32),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: screenHeight / 844 * 72),
-              GestureDetector(
-                onTap: () {
-                  Get.back();
-                },
-                child: Icon(
-                  Icons.arrow_back,
-                  color: KdColors.NotBlack,
-                  size: screenWidth / 390 * 32,
+        width: screenWidth,
+        height: screenHeight,
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: screenWidth / 390 * 32),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: screenHeight / 844 * 72),
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: Icon(
+                    Icons.arrow_back,
+                    color: KdColors.NotBlack,
+                    size: screenWidth / 390 * 32,
+                  ),
                 ),
-              ),
-              SizedBox(height: screenHeight / 844 * 20),
-              Text('단어 추가', style: KDTextTheme.Label),
-              SizedBox(height: screenHeight / 844 * 10),
-              Container(
-                height: screenHeight / 844 * 1,
-                width: screenWidth / 390 * 327,
-                decoration: BoxDecoration(color: KdColors.NotBlack),
-              ),
-              SizedBox(
-                height: screenHeight / 844 * 160,
-              ),
-              SizedBox(
-                width: screenWidth / 390 * 326,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                SizedBox(height: screenHeight / 844 * 20),
+                Text('단어 추가', style: KDTextTheme.Label),
+                SizedBox(height: screenHeight / 844 * 10),
+                Container(
+                  height: screenHeight / 844 * 1,
+                  width: screenWidth / 390 * 327,
+                  decoration: BoxDecoration(color: KdColors.NotBlack),
+                ),
+                SizedBox(
+                  height: screenHeight / 844 * 160,
+                ),
+                Column(
                   children: [
                     SizedBox(
-                      width: screenWidth / 390 * 250,
-                      child: TextField(
-                        controller: _controller1,
-                        textAlign: TextAlign.center,
-                        decoration: InputDecoration(
-                          hintText: '단어 입력',
-                        ),
-                        style: KDTextTheme.hintStyle,
-                      ),
-                    ),
-                    SizedBox(height: screenHeight / 844 * 125),
-                    SizedBox(
-                      width: screenWidth / 390 * 250,
-                      child: TextField(
-                        controller: _controller2,
-                        textAlign: TextAlign.center,
-                        decoration: InputDecoration(
-                          hintText: '뜻, 품사 입력',
-                        ),
-                        style: KDTextTheme.hintStyle,
-                      ),
-                    ),
-                    SizedBox(height: screenHeight / 844 * 150),
-                    GestureDetector(
-                      onTap: _saveInputs,
-                      child: Container(
-                        width: screenWidth / 390 * 316,
-                        height: screenHeight / 844 * 52,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: KdColors.NotBlack,
-                        ),
-                        child: Center(
-                          child: Text(
-                            '완료',
-                            style: KDTextTheme.ButtonStyleBlack,
+                      width: screenWidth / 390 * 326,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: screenWidth / 390 * 250,
+                            child: TextField(
+                              controller: _controller1,
+                              textAlign: TextAlign.center,
+                              decoration: InputDecoration(
+                                hintText: '단어 입력',
+                              ),
+                              style: KDTextTheme.hintStyle,
+                            ),
                           ),
-                        ),
+                          SizedBox(height: screenHeight / 844 * 125),
+                          SizedBox(
+                            width: screenWidth / 390 * 250,
+                            child: TextField(
+                              controller: _controller2,
+                              textAlign: TextAlign.center,
+                              decoration: InputDecoration(
+                                hintText: '뜻, 품사 입력',
+                              ),
+                              style: KDTextTheme.hintStyle,
+                            ),
+                          ),
+                          SizedBox(height: screenHeight / 844 * 150),
+                          GestureDetector(
+                            onTap: _saveInputs,
+                            child: Container(
+                              width: screenWidth / 390 * 316,
+                              height: screenHeight / 844 * 52,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: KdColors.NotBlack,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '완료',
+                                  style: KDTextTheme.ButtonStyleBlack,
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
                       ),
-                    )
+                    ),
                   ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
