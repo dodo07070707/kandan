@@ -54,6 +54,13 @@ class _MemoryScreenEngState extends State<MemoryScreenEng> {
       });
       _pageController.animateToPage(_currentIndex,
           duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+    } else {
+      Get.snackbar(
+        '알림',
+        '마지막 단어입니다!',
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(seconds: 1),
+      );
     }
   }
 
@@ -68,8 +75,15 @@ class _MemoryScreenEngState extends State<MemoryScreenEng> {
   }
 
   Future<void> _deleteCurrentWord() async {
-    if (_input1List.isEmpty) return;
-
+    if (_input1List.isEmpty) {
+      Get.snackbar(
+        '알림',
+        '단어가 없습니다.',
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(seconds: 1),
+      );
+      return;
+    }
     String wordToRemove = _input1List[_currentIndex];
 
     setState(() {
@@ -92,6 +106,13 @@ class _MemoryScreenEngState extends State<MemoryScreenEng> {
 
     _pageController.animateToPage(_currentIndex,
         duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
+
+    Get.snackbar(
+      '알림',
+      '단어가 삭제되었습니다.',
+      snackPosition: SnackPosition.BOTTOM,
+      duration: const Duration(seconds: 1),
+    );
   }
 
   @override
