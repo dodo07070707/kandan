@@ -146,7 +146,7 @@ class _AddScreenState extends State<AddScreen> {
                                 ),
                               ),
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
