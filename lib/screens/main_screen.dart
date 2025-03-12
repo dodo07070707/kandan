@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kandan/screens/memory_screen_kor.dart';
 import 'package:kandan/theme/color_theme.dart';
 import 'package:kandan/theme/text_theme.dart';
 import 'package:get/get.dart';
@@ -52,7 +53,11 @@ class _MainScreenState extends State<MainScreen> {
               decoration: BoxDecoration(color: KdColors.NotBlack),
             ),
             SizedBox(height: screenHeight / 844 * 100),
-            Text('암기(KOR)', style: KDTextTheme.MainMain),
+            GestureDetector(
+                onTap: () {
+                  Get.to(() => MemoryScreenKor());
+                },
+                child: Text('암기(KOR)', style: KDTextTheme.MainMain)),
           ],
         ),
       ),
