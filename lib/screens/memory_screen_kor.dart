@@ -42,8 +42,8 @@ class _MemoryScreenKorState extends State<MemoryScreenKor> {
       _wordList = jsonData.map((item) => List<String>.from(item)).toList();
 
       setState(() {
-        _input1List = _wordList.map((pair) => pair[1]).toList();
-        _input2List = _wordList.map((pair) => pair[0]).toList();
+        _input1List = _wordList.map((pair) => pair[0]).toList();
+        _input2List = _wordList.map((pair) => pair[1]).toList();
         _input1List.shuffle(Random());
       });
     }
