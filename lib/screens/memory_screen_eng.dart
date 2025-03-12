@@ -44,7 +44,6 @@ class _MemoryScreenEngState extends State<MemoryScreenEng> {
       setState(() {
         _input1List = _wordList.map((pair) => pair[1]).toList();
         _input2List = _wordList.map((pair) => pair[0]).toList();
-        _input1List.shuffle(Random());
       });
     }
   }
