@@ -14,24 +14,26 @@ class MemoryScreenEng extends StatefulWidget {
 class _MemoryScreenEngState extends State<MemoryScreenEng> {
   List<List<String>> _wordList = [];
   List<String> _input1List = [];
-  final TextEditingController _controller1 = TextEditingController();
-  final TextEditingController _controller2 = TextEditingController();
+  List<String> _input2List = [];
+  bool _showTranslation = false;
   PageController _pageController = PageController();
   int _currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    _loadInput1List();
+    _loadWordList();
   }
 
   void _shuffleWords() {
     setState(() {
-      _input1List.shuffle(Random());
+      _wordList.shuffle(Random());
+      _input1List = _wordList.map((pair) => pair[0]).toList();
+      _input2List = _wordList.map((pair) => pair[1]).toList();
     });
   }
 
-  Future<void> _loadInput1List() async {
+  Future<void> _loadWordList() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? wordListString = prefs.getString('wordList');
 
@@ -39,9 +41,9 @@ class _MemoryScreenEngState extends State<MemoryScreenEng> {
       List<dynamic> jsonData = jsonDecode(wordListString);
       _wordList = jsonData.map((item) => List<String>.from(item)).toList();
 
-      // 첫 번째 단어들만 추출하여 저장
       setState(() {
         _input1List = _wordList.map((pair) => pair[0]).toList();
+        _input2List = _wordList.map((pair) => pair[1]).toList();
         _input1List.shuffle(Random());
       });
     }
@@ -51,6 +53,7 @@ class _MemoryScreenEngState extends State<MemoryScreenEng> {
     if (_currentIndex < _input1List.length - 1) {
       setState(() {
         _currentIndex++;
+        _showTranslation = false;
       });
       _pageController.animateToPage(_currentIndex,
           duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
@@ -68,6 +71,7 @@ class _MemoryScreenEngState extends State<MemoryScreenEng> {
     if (_currentIndex > 0) {
       setState(() {
         _currentIndex--;
+        _showTranslation = false;
       });
       _pageController.animateToPage(_currentIndex,
           duration: Duration(milliseconds: 300), curve: Curves.easeInOut);
@@ -88,6 +92,7 @@ class _MemoryScreenEngState extends State<MemoryScreenEng> {
 
     setState(() {
       _input1List.removeAt(_currentIndex);
+      _input2List.removeAt(_currentIndex);
       _wordList.removeWhere((pair) => pair[0] == wordToRemove);
     });
 
@@ -154,32 +159,52 @@ class _MemoryScreenEngState extends State<MemoryScreenEng> {
                 width: screenWidth / 390 * 327,
                 decoration: BoxDecoration(color: KdColors.NotBlack),
               ),
+              SizedBox(height: screenHeight / 844 * 214),
               SizedBox(
-                height: screenHeight / 844 * 570,
+                height: screenHeight / 844 * 370,
                 child: PageView.builder(
                   controller: _pageController,
                   itemCount: _input1List.isNotEmpty ? _input1List.length : 1,
                   onPageChanged: (index) {
                     setState(() {
                       _currentIndex = index;
+                      _showTranslation = false;
                     });
                   },
                   itemBuilder: (context, index) {
                     return Center(
-                      child: Text(
-                          _input1List.isNotEmpty
-                              ? _input1List[index]
-                              : '저장된 단어가 없습니다',
-                          style: KDTextTheme.MemorizeWord),
+                      child: Column(
+                        children: [
+                          Text(
+                              _input1List.isNotEmpty
+                                  ? _input1List[index]
+                                  : '저장된 단어가 없습니다',
+                              style: KDTextTheme.MemorizeWord),
+                          SizedBox(height: screenHeight / 844 * 24),
+                          GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _showTranslation = !_showTranslation;
+                              });
+                            },
+                            child: Text(
+                              _showTranslation && _input2List.isNotEmpty
+                                  ? _input2List[index]
+                                  : 'Click To See',
+                              style: KDTextTheme.MemorizeWordSub,
+                            ),
+                          ),
+                        ],
+                      ),
                     );
                   },
                 ),
               ),
-              GestureDetector(
-                onTap: _deleteCurrentWord,
-                child: Row(
-                  children: [
-                    Container(
+              Row(
+                children: [
+                  GestureDetector(
+                    onTap: _deleteCurrentWord,
+                    child: Container(
                       width: screenWidth / 390 * 150,
                       height: screenHeight / 844 * 52,
                       decoration: BoxDecoration(
@@ -193,27 +218,27 @@ class _MemoryScreenEngState extends State<MemoryScreenEng> {
                         ),
                       ),
                     ),
-                    SizedBox(width: screenWidth / 390 * 26),
-                    GestureDetector(
-                      onTap: _nextWord,
-                      child: Container(
-                        width: screenWidth / 390 * 150,
-                        height: screenHeight / 844 * 52,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: KdColors.NotBlack,
-                        ),
-                        child: Center(
-                          child: Text(
-                            '다음',
-                            style: KDTextTheme.ButtonStyleBlack,
-                          ),
+                  ),
+                  SizedBox(width: screenWidth / 390 * 26),
+                  GestureDetector(
+                    onTap: _nextWord,
+                    child: Container(
+                      width: screenWidth / 390 * 150,
+                      height: screenHeight / 844 * 52,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: KdColors.NotBlack,
+                      ),
+                      child: Center(
+                        child: Text(
+                          '다음',
+                          style: KDTextTheme.ButtonStyleBlack,
                         ),
                       ),
                     ),
-                  ],
-                ),
-              )
+                  ),
+                ],
+              ),
             ],
           ),
         ),

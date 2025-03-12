@@ -65,4 +65,11 @@ abstract class KDTextTheme {
     fontWeight: FontWeight.w700,
     letterSpacing: -0.25,
   );
+  static final MemorizeWordSub = TextStyle(
+    fontFamily: 'Pretendard',
+    fontSize: 24,
+    color: KdColors.NotBlack,
+    fontWeight: FontWeight.w400,
+    letterSpacing: -0.25,
+  );
 }
